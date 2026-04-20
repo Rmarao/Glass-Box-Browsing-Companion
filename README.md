@@ -20,26 +20,34 @@ Follow these steps to clone the project and get it running on your own machine.
 
 ### Step 1: Clone the Repository
 Open your terminal and clone this repo to your local machine:
-`git clone https://github.com/prxnxv07/ai-concierge-hackathon.git`
-`cd ai-concierge-hackathon`
+```bash
+git clone https://github.com/prxnxv07/ai-concierge-hackathon.git
+cd ai-concierge-hackathon
+```
 
 ### Step 2: Set Up the Backend Brain
 We need to create an isolated Python environment and install the required packages (FastAPI, Uvicorn, Google GenAI).
 
 **For Mac/Linux:**
-`cd backend`
-`python3 -m venv venv`
-`source venv/bin/activate`
-`pip install -r requirements.txt`
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 ### Step 3: Add Your Secret API Key
 1. Inside the `backend` folder, create a new file named exactly **`.env`**.
 2. Paste your Gemini API key inside it like this:
-`GEMINI_API_KEY=AIzaSy...your_key_here`
+```env
+GEMINI_API_KEY=AIzaSy...your_key_here
+```
 
 ### Step 4: Boot Up the Server
 With your virtual environment still activated, start the local backend server:
-`uvicorn main:app --host 0.0.0.0 --port 8000 --reload`
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
 
 ### Step 5: Install the Chrome Extension
 1. Open Google Chrome and navigate to `chrome://extensions/`
@@ -47,5 +55,3 @@ With your virtual environment still activated, start the local backend server:
 3. Click the **Load unpacked** button (top left).
 4. Select the `ai-concierge-hackathon` root folder.
 5. Pin the extension to your toolbar, open a complex webpage, and start chatting!
-
----
