@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Concierge</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+
+  <!-- ── Header ────────────────────────────────────────── -->
+  <header class="concierge-header">
+    <div class="header-logo" aria-hidden="true">✦</div>
+    <div class="header-info">
+      <div class="header-title">AI Concierge</div>
+      <div class="header-subtitle" id="page-context-label">No page context loaded</div>
+    </div>
+    <div id="context-badge" title="Current page context">idle</div>
+  </header>
+
+  <!-- ── Chat Viewport ─────────────────────────────────── -->
+  <div id="chat-viewport" role="log" aria-live="polite" aria-label="Chat history">
+
+    <!-- Empty state — hidden once first message is sent -->
+    <div class="empty-state" id="empty-state">
+      <div class="empty-state-icon">✦</div>
+      <div class="empty-state-title">Ask me anything</div>
+      <div class="empty-state-body">
+        I can read this page and answer questions about its content, links, or context.
+      </div>
+    </div>
+
+    <div class="chat-divider" id="session-divider" style="display:none">— Conversation started —</div>
+
+  </div>
+
+  <!-- ── Input Dock ─────────────────────────────────────── -->
+  <div class="input-dock">
+
+    <!-- Quick-prompt suggestion chips -->
+    <div class="suggestions" id="suggestions-strip" aria-label="Suggested prompts">
+      <button class="suggestion-chip" data-prompt="Summarize this page in 3 bullets.">📋 Summarize</button>
+      <button class="suggestion-chip" data-prompt="What are the key topics on this page?">🔑 Key topics</button>
+      <button class="suggestion-chip" data-prompt="List all links or actions on this page.">🔗 Links & actions</button>
+      <button class="suggestion-chip" data-prompt="What's the main call-to-action here?">🎯 CTA</button>
+      <button class="suggestion-chip" data-prompt="Is there any contact information on this page?">📞 Contact info</button>
+    </div>
+
+    <!-- Text input + send -->
+    <div class="input-row">
+      <textarea
+        id="chat-input"
+        placeholder="Ask anything about this page…"
+        rows="1"
+        aria-label="Your message"
+        aria-multiline="true"
+      ></textarea>
+      <button id="send-btn" aria-label="Send message" title="Send (Enter)">▶</button>
+    </div>
+
+    <div class="dock-hint">
+      Press <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for new line
+    </div>
+
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

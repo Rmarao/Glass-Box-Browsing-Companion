@@ -1,0 +1,9 @@
+# Mac system files
+.DS_Store
+
+# Python Virtual Environment
+backend/venv/
+backend/__pycache__/
+
+# Secrets and Keys
+backend/.env
