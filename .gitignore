@@ -4,6 +4,7 @@
 # Python Virtual Environment
 backend/venv/
 backend/__pycache__/
+backend/rooms.db
 
 # Secrets and Keys
 backend/.env

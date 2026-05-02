@@ -7,10 +7,8 @@
   <link rel="stylesheet" href="sidepanel.css" />
 </head>
 <body>
-
-  <!-- ── Header ────────────────────────────────────────── -->
   <header class="concierge-header">
-    <div class="header-logo" aria-hidden="true">✦</div>
+    <div class="header-logo" aria-hidden="true">*</div>
     <div class="header-info">
       <div class="header-title">AI Concierge</div>
       <div class="header-subtitle" id="page-context-label">No page context loaded</div>
@@ -18,50 +16,84 @@
     <div id="context-badge" title="Current page context">idle</div>
   </header>
 
-  <!-- ── Chat Viewport ─────────────────────────────────── -->
-  <div id="chat-viewport" role="log" aria-live="polite" aria-label="Chat history">
+  <nav class="mode-tabs" aria-label="Workspace mode">
+    <button class="mode-tab active" id="chat-tab" data-mode="chat">Chat</button>
+    <button class="mode-tab" id="room-tab" data-mode="room">Team Room</button>
+  </nav>
 
-    <!-- Empty state — hidden once first message is sent -->
+  <div id="chat-viewport" class="mode-view active" role="log" aria-live="polite" aria-label="Chat history">
     <div class="empty-state" id="empty-state">
-      <div class="empty-state-icon">✦</div>
+      <div class="empty-state-icon">*</div>
       <div class="empty-state-title">Ask me anything</div>
       <div class="empty-state-body">
         I can read this page and answer questions about its content, links, or context.
       </div>
     </div>
 
-    <div class="chat-divider" id="session-divider" style="display:none">— Conversation started —</div>
-
+    <div class="chat-divider" id="session-divider" style="display:none">Conversation started</div>
   </div>
 
-  <!-- ── Input Dock ─────────────────────────────────────── -->
-  <div class="input-dock">
-
-    <!-- Quick-prompt suggestion chips -->
-    <div class="suggestions" id="suggestions-strip" aria-label="Suggested prompts">
-      <button class="suggestion-chip" data-prompt="Summarize this page in 3 bullets.">📋 Summarize</button>
-      <button class="suggestion-chip" data-prompt="What are the key topics on this page?">🔑 Key topics</button>
-      <button class="suggestion-chip" data-prompt="List all links or actions on this page.">🔗 Links & actions</button>
-      <button class="suggestion-chip" data-prompt="What's the main call-to-action here?">🎯 CTA</button>
-      <button class="suggestion-chip" data-prompt="Is there any contact information on this page?">📞 Contact info</button>
+  <section id="room-view" class="mode-view" aria-label="Team room">
+    <div class="room-join">
+      <div class="room-status" id="room-status">Not joined</div>
+      <div class="room-fields">
+        <input id="member-name" type="text" placeholder="Your name" maxlength="40" />
+        <input id="room-id" type="text" placeholder="Room ID" maxlength="32" />
+        <input id="server-url" type="text" placeholder="Server URL" />
+      </div>
+      <div class="room-actions">
+        <button id="create-room-btn">Create</button>
+        <button id="join-room-btn">Join</button>
+        <button id="refresh-room-btn">Refresh</button>
+      </div>
     </div>
 
-    <!-- Text input + send -->
+    <div class="room-section">
+      <div class="room-section-title">Shared Summary</div>
+      <div id="room-summary" class="room-summary empty-room-text">
+        Join a room to see team summary points.
+      </div>
+    </div>
+
+    <div class="room-section">
+      <div class="room-section-title">Team Activity</div>
+      <div id="room-feed" class="room-feed empty-room-text">
+        Shared AI discoveries will appear here.
+      </div>
+    </div>
+  </section>
+
+  <div class="input-dock" id="input-dock">
+    <div class="research-bar" aria-label="Research scope">
+      <button id="research-tabs-btn" class="research-toggle" type="button" aria-pressed="false">
+        Research all tabs
+      </button>
+      <span id="research-status" class="research-status">Current tab</span>
+    </div>
+
+    <div class="suggestions" id="suggestions-strip" aria-label="Suggested prompts">
+      <button class="suggestion-chip" data-prompt="Summarize this page in 3 bullets.">Summarize</button>
+      <button class="suggestion-chip" data-prompt="What are the key topics on this page?">Key topics</button>
+      <button class="suggestion-chip" data-prompt="List all links or actions on this page.">Links & actions</button>
+      <button class="suggestion-chip" data-prompt="What's the main call-to-action here?">CTA</button>
+      <button class="suggestion-chip" data-prompt="Is there any contact information on this page?">Contact info</button>
+      <button class="suggestion-chip" data-prompt="Compare all open tabs and recommend the best option.">Compare tabs</button>
+    </div>
+
     <div class="input-row">
       <textarea
         id="chat-input"
-        placeholder="Ask anything about this page…"
+        placeholder="Ask anything about this page..."
         rows="1"
         aria-label="Your message"
         aria-multiline="true"
       ></textarea>
-      <button id="send-btn" aria-label="Send message" title="Send (Enter)">▶</button>
+      <button id="send-btn" aria-label="Send message" title="Send (Enter)">></button>
     </div>
 
     <div class="dock-hint">
-      Press <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for new line
+      Press <kbd>Enter</kbd> to send / <kbd>Shift+Enter</kbd> for new line
     </div>
-
   </div>
 
   <script src="sidepanel.js"></script>
